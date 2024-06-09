@@ -17,7 +17,7 @@ void get_UC (char &a, char &b) {
     cin >> b;
 }
 
-void print_CB () {
+void print_CB (char array_B[]) {
 
     cout << array_B[0] << "|" << array_B[1] << "|" << array_B[2] << endl;
 

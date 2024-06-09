@@ -54,13 +54,15 @@ int main () {
 //    cout << a << b;
 //Ddetermines character to use when printing for turns
 //temporary varibale
-   int T;
+
 //temporary code to test function
-   while (c) { cin >> T; cout << symbol_C (i,a,b);}
+   while (c) {
 
+       get_UC(a,b);
 
+       print_CB(array_B,lines);
 
-
+   }
 
 
 

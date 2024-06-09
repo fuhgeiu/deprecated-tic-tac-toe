@@ -17,13 +17,13 @@ void get_UC (char &a, char &b) {
     cin >> b;
 }
 
-void print_CB (char array_B[]) {
+void print_CB (char array_B[], string lines) {
 
-    cout << array_B[0] << "|" << array_B[1] << "|" << array_B[2] << endl;
-
-    cout << array_B[3] << "|" << array_B[4] << "|" << array_B[5] << endl;
-
-    cout << array_B[6] << "|" << array_B[7] << "|" << array_B[8] << endl;
+    cout << " " << array_B[0] << " | " << array_B[1] << " | " << array_B[2] << endl;
+    cout << lines << endl;
+    cout << " " << array_B[3] << " | " << array_B[4] << " | " << array_B[5] << endl;
+    cout << lines << endl;
+    cout << " " << array_B[6] << " | " << array_B[7] << " | " << array_B[8] << endl;
 
 }
 
@@ -40,12 +40,12 @@ int main () {
 //    print updated boards
 
     char a,b;
-    char array_B [9] = {1,2,3,4,5,6,7,8,9};
-    string lines = "- - -";
+    char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
+    string lines = "---+---+---";
 
     get_UC (a,b);
 //    cout << a << b;
-
+    print_CB (array_B,lines);
 
 
 

@@ -48,6 +48,7 @@ int main () {
     char a,b;
     char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
     string lines = "---+---+---";
+    char player_SI;
 //gets player symbols
     get_UC (a,b);
 //    cout << a << b;

@@ -16,7 +16,7 @@ void get_UC (char &a, char &b) {
     cin >> b;
 }
 
-void print_CB (char array_B[], string lines) {
+void print_CB (char array_B[], string lines,string player_SI) {
 
     cout << " " << array_B[0] << " | " << array_B[1] << " | " << array_B[2] << endl;
     cout << lines << endl;
@@ -33,7 +33,18 @@ char symbol_C (int &i, char a, char b) {
     else   { if (i%2 == 0) return b;}
 }
 
+//to get user selection
 
+void select_UI (string &player_SI, char array_B[],char a, char b) {
+
+    do { cin >> player_SI;
+
+    for (int i =0; i < 9; i++)
+        cout << array_B[i];
+
+    } while (array_B[stoi(player_SI)] == a || array_B[stoi(player_SI) == b]);
+
+}
 
 int main () {
     cout << "\tAlex Carnes\t\t" << "6/5\n" << "\ttic tac toe lab\twrite program to play tic tac toe with\n\n";
@@ -48,7 +59,7 @@ int main () {
     char a,b;
     char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
     string lines = "---+---+---";
-    char player_SI;
+    string player_SI;
 //gets player symbols
     get_UC (a,b);
 //    cout << a << b;
@@ -60,7 +71,9 @@ int main () {
 
        get_UC(a,b);
 
-       print_CB(array_B,lines);
+       select_UI (player_SI, array_B,a,b);
+
+       print_CB(array_B,lines,player_SI);
 
    }
 

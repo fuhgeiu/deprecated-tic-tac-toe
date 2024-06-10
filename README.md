@@ -1,6 +1,10 @@
 # tic tac toe
-non class\n
-2 players\n
+non class
+
+2 players
+
 palyer chosen characters
+
 player counter
+
 new game and exit game commands

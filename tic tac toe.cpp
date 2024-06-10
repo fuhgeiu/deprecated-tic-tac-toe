@@ -40,9 +40,6 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
 
     do { cin >> player_SI;
 
-    for (int i =0; i < 9; i++)
-        cout << array_B[i];
-
     } while (array_B[stoi(player_SI)] == a || array_B[stoi(player_SI) == b]);
 
 }
@@ -69,8 +66,6 @@ int main () {
 
 //temporary code to test function
    while (c) {
-
-       get_UC(a,b);
 
        select_UI (player_SI, array_B,a,b);
 

@@ -19,6 +19,9 @@ void get_UC (char &a, char &b) {
 
 void print_CB (char array_B[], string lines,string player_SI) {
 
+
+
+
     cout << " " << array_B[0] << " | " << array_B[1] << " | " << array_B[2] << endl;
     cout << lines << endl;
     cout << " " << array_B[3] << " | " << array_B[4] << " | " << array_B[5] << endl;
@@ -38,9 +41,17 @@ char symbol_C (int &i, char a, char b) {
 
 void select_UI (string &player_SI, char array_B[],char a, char b) {
 
-    do { cin >> player_SI;
+    bool c = 1;
+    cout << "enter a seletion\n";
 
-    } while (array_B[stoi(player_SI)] == a || array_B[stoi(player_SI) == b]);
+    while (c) {
+
+        cin >> player_SI;
+
+        if (array_B[stoi(player_SI)-1] == a || array_B[stoi(player_SI)-1] == b) {cout << "the sot is teken\n";}
+
+        else break;
+    }
 
 }
 

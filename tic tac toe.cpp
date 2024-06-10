@@ -24,11 +24,7 @@ int main () {
     cout << "\tAlex Carnes\t\t" << "6/5\n" << "\ttic tac toe lab\twrite program to play tic tac toe with\n\n";
 //game instructions
     cout << "tic tac toe \n when asked for a selection\n :type 'exit' to stop game.\n :type 'new' to restart game\n\n";
-//    print tic tac toe board
-//    get symbols for 2 users
-//    get user input on selection
-//    keep count to use differnt symbols
-//    print updated boards
+
     bool c = 1,l = 1;
     int i =0;
     char a ='1',b ='1',player_C;
@@ -45,7 +41,7 @@ while (c) {
 //gets player spot selection, and checks if spot is already taken
         select_UI(player_SI, array_B,a,b);
 //to terminate both loops
-        if (player_SI == "terminate") {c = 0; break;}
+        if (player_SI == "terminate") {c = false; break;}
 //to restart game by exit this loop
         if (player_SI == "restart") break;
         //takes selection and marks the board
@@ -99,7 +95,6 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
         if (player_SI == "new") {player_SI = "restart"; break;}
         else
 //  check if entered number is in range
-
         if (stoi(player_SI) > 9) cout << "enter a number les than 9\n";
         else
         if (stoi(player_SI) < 1) cout << "enter a number grater than zero\n";

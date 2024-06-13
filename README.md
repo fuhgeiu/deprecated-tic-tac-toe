@@ -1,6 +1,8 @@
 # tic tac toe
 non class
 
+does not contain sln file 
+
 2 players
 
 palyer chosen characters

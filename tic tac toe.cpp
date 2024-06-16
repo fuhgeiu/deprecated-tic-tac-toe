@@ -54,7 +54,7 @@ while (c) {
 
 
 void get_UC (char &a, char &b) {
-
+//getting symbols for each player
     cout << "enter player one symbol:  ";
     cin >> a;
     cout << "enter player two symbol   ";
@@ -62,10 +62,10 @@ void get_UC (char &a, char &b) {
 }
 
 void print_CB (char array_B[], string player_SI,char player_C) {
-
+//turns an element of the array from a declared char to the player symbol
     array_B[stoi(player_SI)-1] = player_C;
     string lines = "---+---+---";
-
+//prints board with updated spots
     cout << " " << array_B[0] << " | " << array_B[1] << " | " << array_B[2] << endl;
     cout << lines << endl;
     cout << " " << array_B[3] << " | " << array_B[4] << " | " << array_B[5] << endl;
@@ -74,8 +74,9 @@ void print_CB (char array_B[], string player_SI,char player_C) {
 }
 
 char symbol_C (int &i, char a, char b) {
-
+//keeps count to determine how many turns have been played
     i++;
+//returns correct symbol for the turn
     if (i%2 == 1) return a;
     else return b;
 }
@@ -86,7 +87,7 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
     cout << "enter a selection, or type 'exit' or 'new' \n";
 
     while (c) {
-
+//inputs player spot selection
         cin >> player_SI;
 
 //check to see if player entered special commands

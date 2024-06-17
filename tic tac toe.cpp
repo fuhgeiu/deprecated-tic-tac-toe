@@ -26,7 +26,6 @@ int main () {
     cout << "tic tac toe \n when asked for a selection\n :type 'exit' to stop game.\n :type 'new' to restart game\n\n";
 
     bool c = 1,l = 1;
-    int i =0;
     char a,b,player_C;
     string player_SI;
 
@@ -34,6 +33,7 @@ while (c) {
 //gets player symbols
     get_UC(a, b);
     char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
+    int i =0;
 
     while (l) {
 //determine which player character to use for the turn, keeps count

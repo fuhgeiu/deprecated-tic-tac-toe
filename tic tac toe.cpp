@@ -1,6 +1,6 @@
 /*
-program that does cmath and trig fucntions
-alex carnes 6/6
+program that operates tic tac toe
+alex carnes 6/16
 */
 
 #include <iostream>

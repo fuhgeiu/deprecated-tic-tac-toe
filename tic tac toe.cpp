@@ -27,7 +27,7 @@ int main () {
 
     bool c = 1,l = 1;
     int i =0;
-    char a ='1',b ='1',player_C;
+    char a,b,player_C;
     string player_SI;
 
 while (c) {

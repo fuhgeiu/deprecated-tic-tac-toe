@@ -8,6 +8,29 @@ alex carnes 6/16
 
 using namespace std;
 
+void find_C() {
+
+
+
+
+
+
+}
+
+
+char win_P(string player_SI,char player_C,char array_B[]) {
+
+    cout << player_SI << endl;
+    cout << player_C << endl;
+
+    for (int i = 8; i >= 0; i--) {
+
+    if (array_B[stoi(player_SI)-i == player_C]) cout << "found at " << i << endl;
+
+    }
+
+}
+
 
 
 void get_UC(char&,char&);
@@ -46,6 +69,8 @@ while (c) {
         if (player_SI == "restart") break;
         //takes selection and marks the board
         print_CB(array_B,player_SI,player_C);
+//determines winner
+        if (i > 4) win_P(player_SI,player_C,array_B);
     }
 }
     return 0;
@@ -106,3 +131,32 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
         else break;
     }
 }
+
+
+// winning system
+
+//  activate after the 4th turn as before that impossible of a win
+//
+//  select_Ui would give most recent valid entry, use that to search around it and find a match
+
+//  will use select_UI to find the nearest other same character, than search again for that character spot
+//  character finder to be a function to be repeated multiple times for both characters
+//  when the computer sees 3 characters all in correct row or diagnol than it declares that character the winner
+
+
+//      check if the possible locations that will be a win
+
+
+//other system
+
+//  will iterate through nad find all locations of same charcter
+//  is those character indexes indicate they are in a winning pattern than dispaly the winner
+//      the pattern will be -3 and + 3 for vertical
+//      +1 and -1 for horizontal
+//      +4 and + 8 for diagonal or +2 and +4
+
+
+
+
+
+

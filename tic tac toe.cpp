@@ -8,12 +8,34 @@ alex carnes 6/16
 
 using namespace std;
 
-void find_C() {
+
+int close_V(string player_SI,char array_B[],char player_C) {
+
+    for (int i = stoi(player_SI); i >= 9; i++)
+
+        if (array_B[i] == player_C)
+
+    for (int i = stoi(player_SI); i <= 0; i--)
+
+    return 0;
+}
 
 
 
 
 
+
+
+void find_C(string player_SI,char array_B[],char player_C,int &i) {
+
+
+
+    for (int i; i <= 9; i++) {
+
+        if (array_B[i] == player_C) break;
+    }
+
+    cout << i + 1;
 
 }
 
@@ -22,14 +44,31 @@ char win_P(string player_SI,char player_C,char array_B[]) {
 
     cout << player_SI << endl;
     cout << player_C << endl;
+    int i = 0;
 
-    for (int i = 8; i >= 0; i--) {
+    find_C(player_SI,array_B,player_C,i);
 
-    if (array_B[stoi(player_SI)-i == player_C]) cout << "found at " << i << endl;
-
-    }
 
 }
+
+void win_PS(string player_SI,char player_C, char array_B[]){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
 
 
 
@@ -70,7 +109,7 @@ while (c) {
         //takes selection and marks the board
         print_CB(array_B,player_SI,player_C);
 //determines winner
-        if (i > 4) win_P(player_SI,player_C,array_B);
+        if (i > 4) win_PS(player_SI,player_C,array_B);
     }
 }
     return 0;
@@ -136,10 +175,13 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
 // winning system
 
 //  activate after the 4th turn as before that impossible of a win
-//
-//  select_Ui would give most recent valid entry, use that to search around it and find a match
 
-//  will use select_UI to find the nearest other same character, than search again for that character spot
+//  select_Ui would give most recent valid entry, use that to search around it and find a match
+//      function that looks + i and -i spots until index at i == player_c
+//      returns value of the index
+
+
+
 //  character finder to be a function to be repeated multiple times for both characters
 //  when the computer sees 3 characters all in correct row or diagnol than it declares that character the winner
 

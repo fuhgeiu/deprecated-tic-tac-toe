@@ -107,7 +107,7 @@ while (c) {
         //takes selection and marks the board
         print_CB(array_B,player_SI,player_C);
 //determines winner
-        if (i > 2) win_P(player_SI,player_C,array_B,l);
+        if (i > 3) win_P(player_SI,player_C,array_B,l);
     }
 }
     return 0;
@@ -221,9 +221,6 @@ void win_P (string player_SI,char player_C,char array_B[],int &l) {
     {cout << player_C << " wins\n\n"; l = 0;}
 
     else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
-    else if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C))
     {cout << player_C << " wins\n\n"; l = 0;}
 
 

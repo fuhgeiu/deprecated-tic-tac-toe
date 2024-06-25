@@ -9,67 +9,63 @@ alex carnes 6/16
 using namespace std;
 
 
-int close_V(string player_SI,char array_B[],char player_C) {
+//int close_V(string player_SI,char array_B[],char player_C) {
+//
+//    for (int i = stoi(player_SI); i >= 9; i++)
+//
+//        if (array_B[i] == player_C)
+//
+//    for (int i = stoi(player_SI); i <= 0; i--)
+//
+//    return 0;
+//}
+//
+//
+//
+//void find_C(string player_SI,char array_B[],char player_C,int &i) {
+//
+//    for (int i; i <= 9; i++) {
+//
+//        if (array_B[i] == player_C) break;
+//    }
+//
+//    cout << i + 1;
+//
+//}
 
-    for (int i = stoi(player_SI); i >= 9; i++)
-
-        if (array_B[i] == player_C)
-
-    for (int i = stoi(player_SI); i <= 0; i--)
-
-    return 0;
-}
-
-
-
-
-
-
-
-void find_C(string player_SI,char array_B[],char player_C,int &i) {
-
-
-
-    for (int i; i <= 9; i++) {
-
-        if (array_B[i] == player_C) break;
-    }
-
-    cout << i + 1;
-
-}
-
-
-char win_P(string player_SI,char player_C,char array_B[]) {
-
-    cout << player_SI << endl;
-    cout << player_C << endl;
-    int i = 0;
-
-    find_C(player_SI,array_B,player_C,i);
-
-
-}
-
-void win_PS(string player_SI,char player_C, char array_B[]){
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
+//int test_C1(char array_B[],char player_C,int i) {
+//    int T;
+//    for (i; i < 3; i++) {
+//        if (array_B[i] == player_C) {T =+ i;}
+//    }
+//    return T;
+//}
+//
+//void test_C(char array_B[],char player_C) {
+//    int T;
+//    for (int i = 0; i < 6; i+3) {
+//        test_C1(array_B,player_C,i);
+//
+//        if (T == 3) {cout << player_C << "wins\n";}
+//        else if (T == 12) {cout << player_C << "wins\n";}
+//        else if (T == 21) {cout << player_C << "wins\n";}
+//
+//    }
+//}
+//
+//
+//void win_PS(string player_SI,char player_C, char array_B[]){
+//
+////  horizontal win
+//
+//    test_C(array_B,player_C);
+//
+////  vertical win
+//
+////  diagonal win
+//
+//
+//}
 
 
 void get_UC(char&,char&);
@@ -80,6 +76,7 @@ char symbol_C (int&,char,char);
 
 void select_UI (string&,char[], char , char);
 
+void win_P (string,char,char [],int&);
 
 
 int main () {
@@ -87,7 +84,7 @@ int main () {
 //game instructions
     cout << "tic tac toe \n when asked for a selection\n :type 'exit' to stop game.\n :type 'new' to restart game\n\n";
 
-    bool c = 1,l = 1;
+    bool c = 1;
     char a,b,player_C;
     string player_SI;
 
@@ -96,8 +93,9 @@ while (c) {
     get_UC(a, b);
     char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
     int i =0;
+    int l = 1;
 
-    while (l) {
+    while (l==1) {
 //determine which player character to use for the turn, keeps count
         player_C = symbol_C(i,a,b);
 //gets player spot selection, and checks if spot is already taken
@@ -109,7 +107,7 @@ while (c) {
         //takes selection and marks the board
         print_CB(array_B,player_SI,player_C);
 //determines winner
-        if (i > 4) win_PS(player_SI,player_C,array_B);
+        if (i > 2) win_P(player_SI,player_C,array_B,l);
     }
 }
     return 0;
@@ -171,6 +169,65 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
     }
 }
 
+
+void win_P (string player_SI,char player_C,char array_B[],int &l) {
+//
+//    int i = (stoi(player_SI)-1);
+//    int L = (i-9);
+//    int L1 = (9-i);
+//    int T = 0;
+//    int T2 = i;
+//
+//
+//        for (int i; i < L; i++) if (array_B[i] == player_C) T1 =+ i;
+//
+//        for (int i; i < L1; i--) if (array_B[i] == player_C) T2 =+ i;
+//
+//        if (T1 == 4 || T2 == 2 ) cout << player_C << "wins\n";
+//
+//        for (int i = 1; i < 9; i++) if (array_B[i-1] == player_C) T=+i;
+//
+//        if (T == stoi(player_SI)) cout << player_C << "wins" << endl;
+
+//simple
+
+//      for horizontal
+
+    if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+    else if ((array_B[3] == player_C) && (array_B[4] == player_C) && (array_B[5] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+    else if ((array_B[6] == player_C) && (array_B[7] == player_C) && (array_B[8] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+
+//      for vertical
+
+    if ((array_B[0] == player_C) && (array_B[3] == player_C) && (array_B[6] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+    else if ((array_B[1] == player_C) && (array_B[4] == player_C) && (array_B[7] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+    else if ((array_B[2] == player_C) && (array_B[5] == player_C) && (array_B[8] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+
+//      for diagonal
+
+    if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+    else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+    else if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C))
+    {cout << player_C << " wins\n\n"; l = 0;}
+
+
+}
 
 // winning system
 

@@ -5,67 +5,10 @@ alex carnes 6/16
 
 #include <iostream>
 #include <string>
+#include <ctype.h>
+#include <random>
 
 using namespace std;
-
-
-//int close_V(string player_SI,char array_B[],char player_C) {
-//
-//    for (int i = stoi(player_SI); i >= 9; i++)
-//
-//        if (array_B[i] == player_C)
-//
-//    for (int i = stoi(player_SI); i <= 0; i--)
-//
-//    return 0;
-//}
-//
-//
-//
-//void find_C(string player_SI,char array_B[],char player_C,int &i) {
-//
-//    for (int i; i <= 9; i++) {
-//
-//        if (array_B[i] == player_C) break;
-//    }
-//
-//    cout << i + 1;
-//
-//}
-
-//int test_C1(char array_B[],char player_C,int i) {
-//    int T;
-//    for (i; i < 3; i++) {
-//        if (array_B[i] == player_C) {T =+ i;}
-//    }
-//    return T;
-//}
-//
-//void test_C(char array_B[],char player_C) {
-//    int T;
-//    for (int i = 0; i < 6; i+3) {
-//        test_C1(array_B,player_C,i);
-//
-//        if (T == 3) {cout << player_C << "wins\n";}
-//        else if (T == 12) {cout << player_C << "wins\n";}
-//        else if (T == 21) {cout << player_C << "wins\n";}
-//
-//    }
-//}
-//
-//
-//void win_PS(string player_SI,char player_C, char array_B[]){
-//
-////  horizontal win
-//
-//    test_C(array_B,player_C);
-//
-////  vertical win
-//
-////  diagonal win
-//
-//
-//}
 
 
 void get_UC(char&,char&);
@@ -74,9 +17,13 @@ void print_CB (char [],string,char);
 
 char symbol_C (int&,char,char);
 
+string comp (char [],char,char);
+
 void select_UI (string&,char[], char , char);
 
 void win_P (string,char,char [],int&);
+
+
 
 
 int main () {
@@ -125,6 +72,7 @@ void get_UC (char &a, char &b) {
 
 void print_CB (char array_B[], string player_SI,char player_C) {
 //turns an element of the array from a declared char to the player symbol
+    cout << endl;
     array_B[stoi(player_SI)-1] = player_C;
     string lines = "---+---+---";
 //prints board with updated spots
@@ -143,20 +91,45 @@ char symbol_C (int &i, char a, char b) {
     else return b;
 }
 
+
+string comp (char array_B[],char a, char b) {
+
+    int i;
+
+    do {
+
+        random_device rd;                                           // obtain a random number from hardware
+        mt19937 gen(rd());                                      // seed the generator
+        uniform_int_distribution<> distr(1, 9);             // define the range
+
+        i = distr(gen);                                         // variable equals random number
+    }
+
+    while (array_B[i - 1] == a || array_B[i - 1] == b  );           // so computer choice will not be selected
+
+    cout << "computer selects spot " << i << endl;                  // notify player of computer choice
+
+    return to_string(i);
+}
+
+
 void select_UI (string &player_SI, char array_B[],char a, char b) {
 
     bool c = 1;
-    cout << "enter a selection, or type 'exit' or 'new' \n";
+    cout << "\nenter a selection, or type 'exit' or 'new' \n";
 
     while (c) {
 //inputs player spot selection
         cin >> player_SI;
+
+        if (player_SI == "c" )  {cout << endl; player_SI = comp(array_B,a,b); break;}
 
 //check to see if player entered special commands
         if (player_SI == "exit") {player_SI = "terminate"; break;}
         else
         if (player_SI == "new") {player_SI = "restart"; break;}
         else
+
 //  check if entered number is in range
         if (stoi(player_SI) > 9) cout << "enter a number les than 9\n";
         else
@@ -171,27 +144,7 @@ void select_UI (string &player_SI, char array_B[],char a, char b) {
 
 
 void win_P (string player_SI,char player_C,char array_B[],int &l) {
-//
-//    int i = (stoi(player_SI)-1);
-//    int L = (i-9);
-//    int L1 = (9-i);
-//    int T = 0;
-//    int T2 = i;
-//
-//
-//        for (int i; i < L; i++) if (array_B[i] == player_C) T1 =+ i;
-//
-//        for (int i; i < L1; i--) if (array_B[i] == player_C) T2 =+ i;
-//
-//        if (T1 == 4 || T2 == 2 ) cout << player_C << "wins\n";
-//
-//        for (int i = 1; i < 9; i++) if (array_B[i-1] == player_C) T=+i;
-//
-//        if (T == stoi(player_SI)) cout << player_C << "wins" << endl;
 
-//simple
-
-//      for horizontal
 
     if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C))
     {cout << player_C << " wins\n\n"; l = 0;}
@@ -226,6 +179,7 @@ void win_P (string player_SI,char player_C,char array_B[],int &l) {
 
 }
 
+
 // winning system
 
 //  activate after the 4th turn as before that impossible of a win
@@ -252,6 +206,20 @@ void win_P (string player_SI,char player_C,char array_B[],int &l) {
 //      +4 and + 8 for diagonal or +2 and +4
 
 
+
+
+// changes to program pushed
+
+
+// player can select a computer to make a choice for them that is available on the board    func [ comp(); ]
+// changed spacing of game to be easier to read
+
+
+// to do
+
+// program tells player there is a tie
+// program asks if the players want to reset the game
+// if no than it will pause, until player uses exit sequence, otherwise will auto reset after some time
 
 
 

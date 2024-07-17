@@ -5,7 +5,6 @@ alex carnes 6/16
 
 #include <iostream>
 #include <string>
-#include <ctype.h>
 #include <random>
 
 using namespace std;
@@ -19,17 +18,18 @@ char symbol_C (int&,char,char);
 
 string comp (char [],char,char);
 
-void select_UI (string&,char[], char , char);
+void select_UI (string&,char[], char , char, char);
 
-void win_P (string,char,char [],int&);
-
+void win_P (string,char,char [],int&,int);
 
 
 
 int main () {
     cout << "\tAlex Carnes\t\t" << "6/5\n" << "\ttic tac toe lab\twrite program to play tic tac toe with\n\n";
 //game instructions
-    cout << "tic tac toe \n when asked for a selection\n :type 'exit' to stop game.\n :type 'new' to restart game\n\n";
+    cout << "tic tac toe \n when asked for a selection\n :type 'exit' to stop game.\n :type 'new' to restart game\n";
+    cout << " :type 'c' for a random selection by computer\n";
+    cout << "type 'c' if u want the player to be a computer player\n";
 
     bool c = 1;
     char a,b,player_C;
@@ -45,16 +45,16 @@ while (c) {
     while (l==1) {
 //determine which player character to use for the turn, keeps count
         player_C = symbol_C(i,a,b);
-//gets player spot selection, and checks if spot is already taken
-        select_UI(player_SI, array_B,a,b);
+        cout << "\ncurrent player is: " << player_C << endl;                     // show current player symbol
+        select_UI(player_SI, array_B,a,b,player_C); //gets player spot selection, and checks if spot is already taken
 //to terminate both loops
         if (player_SI == "terminate") {c = false; break;}
-//to restart game by exit this loop
-        if (player_SI == "restart") break;
-        //takes selection and marks the board
-        print_CB(array_B,player_SI,player_C);
-//determines winner
-        if (i > 3) win_P(player_SI,player_C,array_B,l);
+
+        if (player_SI == "restart") break;                              // to restart game by exit this loop
+
+        print_CB(array_B,player_SI,player_C);                           // takes selection and marks the board
+
+        if (i > 3) win_P(player_SI,player_C,array_B,l,i);            // determines winner
     }
 }
     return 0;
@@ -64,11 +64,12 @@ while (c) {
 
 void get_UC (char &a, char &b) {
 //getting symbols for each player
-    cout << "enter player one symbol:  ";
-    cin >> a;
-    cout << "enter player two symbol   ";
-    cin >> b;
+    cout << "\nenter player one symbol:  ";
+    cin >> a;                                                       // for player 1
+    cout << "enter player two symbol:   ";
+    cin >> b;                                                       // for player 2
 }
+
 
 void print_CB (char array_B[], string player_SI,char player_C) {
 //turns an element of the array from a declared char to the player symbol
@@ -83,12 +84,12 @@ void print_CB (char array_B[], string player_SI,char player_C) {
     cout << " " << array_B[6] << " | " << array_B[7] << " | " << array_B[8] << endl;
 }
 
+
 char symbol_C (int &i, char a, char b) {
-//keeps count to determine how many turns have been played
-    i++;
-//returns correct symbol for the turn
+
+    i++;                                                //keeps count to determine how many turns have been played
     if (i%2 == 1) return a;
-    else return b;
+    else return b;                                      //returns correct symbol for the turn
 }
 
 
@@ -107,43 +108,45 @@ string comp (char array_B[],char a, char b) {
 
     while (array_B[i - 1] == a || array_B[i - 1] == b  );           // so computer choice will not be selected
 
-    cout << "computer selects spot " << i << endl;                  // notify player of computer choice
+    cout << "\ncomputer selects spot " << i << endl;                  // notify player of computer choice
 
     return to_string(i);
 }
 
 
-void select_UI (string &player_SI, char array_B[],char a, char b) {
+void select_UI (string &player_SI, char array_B[],char a, char b,char player_C) {
 
     bool c = 1;
-    cout << "\nenter a selection, or type 'exit' or 'new' \n";
 
-    while (c) {
+    if ( player_C == 'c' ) {player_SI = comp(array_B,a,b);}
+    else {
+
+        cout << "\nenter a selection, or type 'exit' or 'new' \n";
+
+        while (c) {
 //inputs player spot selection
-        cin >> player_SI;
-
-        if (player_SI == "c" )  {cout << endl; player_SI = comp(array_B,a,b); break;}
+            cin >> player_SI;
+            if (player_SI == "c") { cout << endl;   player_SI = comp(array_B, a, b); break;  }
 
 //check to see if player entered special commands
-        if (player_SI == "exit") {player_SI = "terminate"; break;}
-        else
-        if (player_SI == "new") {player_SI = "restart"; break;}
-        else
+            if (player_SI == "exit") {  player_SI = "terminate"; break;  }
+            else if (player_SI == "new") { player_SI = "restart"; break; }
 
 //  check if entered number is in range
-        if (stoi(player_SI) > 9) cout << "enter a number les than 9\n";
-        else
-        if (stoi(player_SI) < 1) cout << "enter a number grater than zero\n";
-        else
+            else if (stoi(player_SI) > 9) cout << "enter a number les than 9\n";
+            else if (stoi(player_SI) < 1) cout << "enter a number grater than zero\n";
+
 //  check is selection is already taken
-        if (array_B[stoi(player_SI)-1] == a || array_B[stoi(player_SI)-1] == b)
-            {cout << "the space is taken\n";}
-        else break;
+            else if (array_B[stoi(player_SI) - 1] == a || array_B[stoi(player_SI) - 1] == b) {
+                cout << "the space is taken\n";
+            }
+            else break;
+        }
     }
 }
 
 
-void win_P (string player_SI,char player_C,char array_B[],int &l) {
+void win_P (string player_SI,char player_C,char array_B[],int &l,int i) {
 
 
     if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C))
@@ -175,6 +178,31 @@ void win_P (string player_SI,char player_C,char array_B[],int &l) {
 
     else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C))
     {cout << player_C << " wins\n\n"; l = 0;}
+
+//      for tie and resetting game
+    if (i > 8 && l == 1) {
+
+        char temp;
+        cout << "there has been a tie\n\n" << "if you want a new game type 'y' \n";
+        cin >> temp;
+        if (temp == 'y') l = 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
@@ -208,19 +236,20 @@ void win_P (string player_SI,char player_C,char array_B[],int &l) {
 
 
 
-// changes to program pushed
 
+// changes to program pushed
 
 // player can select a computer to make a choice for them that is available on the board    func [ comp(); ]
 // changed spacing of game to be easier to read
+// player can select a player to be replaced by a computer
+// program tells player there is a tie
+// prompts to reset game and, resets when player indicates so
 
 
 // to do
 
-// program tells player there is a tie
-// program asks if the players want to reset the game
-// if no than it will pause, until player uses exit sequence, otherwise will auto reset after some time
-
+// program to write game results and or gameplay to file
+// use class for program
 
 
 

@@ -237,6 +237,7 @@ void win_P (string player_SI,char player_C,char array_B[],int &l,int i) {
 
 
 
+
 // changes to program pushed
 
 // player can select a computer to make a choice for them that is available on the board    func [ comp(); ]

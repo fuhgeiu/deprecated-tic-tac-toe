@@ -66,8 +66,12 @@ void get_UC (char &a, char &b) {
 //getting symbols for each player
     cout << "\nenter player one symbol:  ";
     cin >> a;                                                       // for player 1
+
+    do {
     cout << "enter player two symbol:   ";
-    cin >> b;                                                       // for player 2
+    cin >> b;                                                           // for player 2
+    } while (a == b);
+
 }
 
 
@@ -106,7 +110,7 @@ string comp (char array_B[],char a, char b) {
         i = distr(gen);                                         // variable equals random number
     }
 
-    while (array_B[i - 1] == a || array_B[i - 1] == b  );           // so computer choice will not be selected
+    while (array_B[i - 1] == a || array_B[i - 1] == b );           // so computer choice will not be selected
 
     cout << "\ncomputer selects spot " << i << endl;                  // notify player of computer choice
 
@@ -148,62 +152,36 @@ void select_UI (string &player_SI, char array_B[],char a, char b,char player_C) 
 
 void win_P (string player_SI,char player_C,char array_B[],int &l,int i) {
 
+    int z = 0;
 
-    if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
-    else if ((array_B[3] == player_C) && (array_B[4] == player_C) && (array_B[5] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
-    else if ((array_B[6] == player_C) && (array_B[7] == player_C) && (array_B[8] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
+    if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C)) {z = 1; l = 0;}
+    else if ((array_B[3] == player_C) && (array_B[4] == player_C) && (array_B[5] == player_C)) {z = 1; l = 0;}
+    else if ((array_B[6] == player_C) && (array_B[7] == player_C) && (array_B[8] == player_C)) {z = 1; l = 0;}
 
 //      for vertical
 
-    if ((array_B[0] == player_C) && (array_B[3] == player_C) && (array_B[6] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
-    else if ((array_B[1] == player_C) && (array_B[4] == player_C) && (array_B[7] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
-    else if ((array_B[2] == player_C) && (array_B[5] == player_C) && (array_B[8] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
-
+    if ((array_B[0] == player_C) && (array_B[3] == player_C) && (array_B[6] == player_C)) {z = 2; l = 0;}
+    else if ((array_B[1] == player_C) && (array_B[4] == player_C) && (array_B[7] == player_C)) {z = 2; l = 0;}
+    else if ((array_B[2] == player_C) && (array_B[5] == player_C) && (array_B[8] == player_C)) {z = 2; l = 0;}
 
 //      for diagonal
 
-    if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
+    if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C)) {z = 3; l = 0;}
+    else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C)) {z = 3; l = 0;}
 
-    else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C))
-    {cout << player_C << " wins\n\n"; l = 0;}
+//       display how player won
+    if (z == 1) cout << player_C << " won horizontally\n";
+    if (z == 2) cout << player_C << " won vertically\n";
+    if (z == 3) cout << player_C << " won diagonally\n";
 
 //      for tie and resetting game
     if (i > 8 && l == 1) {
 
         char temp;
-        cout << "there has been a tie\n\n" << "if you want a new game type 'y' \n";
+        cout << "\nthere has been a tie\n\n" << "if you want a new game type 'y' \n";
         cin >> temp;
         if (temp == 'y') l = 0;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
@@ -244,10 +222,12 @@ void win_P (string player_SI,char player_C,char array_B[],int &l,int i) {
 // player can select a player to be replaced by a computer
 // program tells player there is a tie
 // prompts to reset game and, resets when player indicates so
+// protection so players dont have same symbol as it will break game
 
 
 // to do
 
+// fix, show how player won
 // program to write game results and or gameplay to file
 // use class for program
 

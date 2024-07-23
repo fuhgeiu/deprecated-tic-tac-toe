@@ -7,7 +7,7 @@ alex carnes 6/16
 #include "tic tac toe methods.cpp"
 
 using namespace std;
-
+//using namespace game;
 
 game current;               // object decleration(using defaults)
 
@@ -20,37 +20,41 @@ int main () {
     cout << "type 'c' if u want the player to be a computer player\n";
 
     bool c = 1;
-    char player_C;
 
     while (c) {
-    //gets player symbols
-    current.game::get_UC();
 
-    char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
-    char* aptr = & array_B[0];
+        current.get_UC();                                                     //gets player symbols
 
-    current.game::setarray(aptr);
+        char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
 
-    int i =0;
-    int l = 1;
+        char* aptr = & array_B[0];                                            // set pointer to array [0]
 
-        while (l==1) {
-        //determine which player character to use for the turn, keeps count
-        player_C = current.game::symbol_C(i);
-        cout << "\ncurrent player is: " << player_C << endl;                     // show current player symbol
-        current.game::select_UI(player_C); //gets player spot selection, and checks if spot is already taken
-        //to terminate both loops
-        if (current.game::getplayer_SI() == "terminate") {c = false; break;}
+        current.setarray(aptr);                                               // reset array with pointer
 
-        if (current.game::getplayer_SI() == "restart") break;                        // to restart game by exit this loop
+        current.seti(0);                                                      // set counter to zero (reset)
 
-        current.game::print_CB(player_C);                          // takes selection and marks the board
+        int l = 1;
 
-        if (i > 3) current.game::win_P(player_C,l,i);           // determines winner
+            while (l==1) {
+            //determine which player character to use for the turn, keeps count
+            current.setplayer_C(current.game::symbol_C());                         // set player_C to current player
+
+            cout << "\ncurrent player is: " << current.getplayer_C() << endl;         // show current player symbol
+
+            current.select_UI();                //gets player spot selection, and checks if spot is already taken
+
+            if (current.getplayer_SI() == "terminate") {c = false; break;}  //to terminate both loops
+            if (current.getplayer_SI() == "restart") break;                 // to restart game by exit this loop
+
+            current.print_CB();                                             // takes selection and marks the board
+
+            if (current.geti() > 3) current.game::win_P(l);                    // determines winner
         }
+
     }
 
 }
+
 
 /*
  winning system (brainstorming without using simple method)
@@ -86,9 +90,10 @@ int main () {
 // protection so players dont have same symbol as it will break game
 // added showing which method the player won
 // used class(not effecticly yet)
+// used pointer for resetting array
 
 
 // to do
 
 // program to write game results and or gameplay to file
-// use of pointers to reduce program size and amount of data being moved around and acessed
+

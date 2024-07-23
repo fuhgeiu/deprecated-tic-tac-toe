@@ -19,16 +19,16 @@ class game {
 
 public:
 
-    // constructer
-    game(char a0, char b0, char c, std::string s) {
+
+    game(char a0, char b0, char c, std::string s) {         // constructer
 
         a = a0;
         b = b0;
         player_SI = s;
     }
 
-    // default constructer
-    game() {
+
+    game() {                                                   // default constructer
 
         a = 'a';
         b = 'b';

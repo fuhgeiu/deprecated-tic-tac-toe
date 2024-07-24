@@ -37,12 +37,12 @@ public:
     }
 
     // methods
-    void get_UC(std::ostream&);                                              // get player symbols
-    void print_CB();                                            // print current board
+    void get_UC(std::fstream&);                                 // get player symbols
+    void print_CB(std::fstream&);                               // print current board
     char symbol_C();                                            // determine current player
     std::string comp();                                         // get computer choice(includes checks)
     void select_UI();                                           // get and check spot selection
-    void win_P(int&);                                           // determine and display winner/tie
+    void win_P(int&,std::fstream&);                             // determine and display winner/tie
 
     // special methods
     std::string getplayer_SI();                             // getter for player_SI, for loop control in main

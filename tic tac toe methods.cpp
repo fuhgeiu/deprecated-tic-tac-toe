@@ -6,26 +6,26 @@ alex carnes 6/16
 #include <iostream>
 #include "tic tac toe .h"
 #include <random>
-#include <unistd.h>
-#include <fstream>
 
 using namespace std;
 //using namespace game;
 
 
-void game::get_UC (ostream& stream) {
+void game::get_UC (fstream& stream) {
 //getting symbols for each player
 
+    stream << "\n\nplayer symbols";
     cout << "\nenter player one symbol: ";
-    cin >> game::a; stream << a;                                        // for player 1
+    cin >> game::a;                                                          // for player 1
     cout << "enter player two symbol: ";
-    cin >> game::b; stream << b;                                        // for player 2
+    cin >> game::b;                                                          // for player 2
+    stream << endl << a << "," << b << endl << endl;
 }
 
 
-void game::print_CB () {
+void game::print_CB (fstream& stream) {
 //turns an element of the array from a declared char to the player symbol
-    cout << endl;
+    cout << endl; stream << player_C << " :selects spot " << player_SI << endl;       // stream to file
     array_B[stoi(player_SI)-1] = player_C;
     string lines = "---+---+---";
 //prints board with updated spots
@@ -71,7 +71,7 @@ void game::select_UI () {
     if ( game::player_C == 'c' ) {player_SI = comp();}
     else {
 
-        cout << "\nenter a selection, or type 'exit' or 'new' \n";
+        cout << "\nenter a selection: ";
 
         while (c) {
 //      inputs player spot selection
@@ -96,7 +96,7 @@ void game::select_UI () {
 }
 
 
-void game::win_P (int &l) {
+void game::win_P (int &l,fstream& stream) {
 
     double z = 0.0;
 //for horizontal
@@ -114,20 +114,25 @@ void game::win_P (int &l) {
     else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C)) {z = 3.0; l = 0;}
 
 //display how player won
-    if (z == 1.0) cout << endl << player_C << " won horizontally\n";
-    if (z == 2.0) cout << endl << player_C << " won vertically\n";
-    if (z == 3.0) cout << endl << player_C << " won diagonally\n";
+    if (z == 1.0) {cout << endl << player_C << " won horizontally\n"; stream << "\nwon horizontally: " << player_C;}
+    if (z == 2.0) {cout << endl << player_C << " won vertically\n";   stream << "\nwon vertically: " << player_C;}
+    if (z == 3.0) {cout << endl << player_C << " won diagonally\n";   stream << "\nwon diagonally: " << player_C;}
 
 //for tie and resetting game
     if (z > 0.0 || i > 8) {
 
         char temp;
-        if (i > 8) cout << "\nthere has been a tie\n\n";
-        cout << "\nif you want a new game type 'y' \n";
-        cin >> temp;  if (temp == 'y') l = 0;  else sleep(1); l = 3;
+        if (i > 8 && z == 0.0) {cout << "\nthere has been a tie\n\n"; stream << "there has been a tie\n";}
+        cout << "\nrestart game? (y) or start new game if dual game mode? (n) or end to print log? (n)\n";
+        cin >> temp;
+
+        if (temp == 'y') l = 0;
+            else l = 3;
+
     }
 
 }
+
 
 // to show how and which player won, print board with just the winning players symbols displayed in the winning spots
 //      do not show losing player or, symbols that are not part of the winning 3 spots

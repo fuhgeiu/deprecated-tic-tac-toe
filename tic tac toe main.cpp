@@ -12,6 +12,8 @@ using namespace std;
 
 
 void gameloop(game);
+void print();
+void clear();
 
 int main () {
 
@@ -20,32 +22,44 @@ int main () {
     cout << " :type 'c' for a random selection by computer\n\n";
     cout << "type 'c' if u want the player to be a computer player\n";
 
-    game player1;               // object decleration(using defaults)
-    game player2;               // object decleration(using defaults)
+    char t;
 
-    cout << "player_1\n";
-    gameloop(player1);          // run player 1 game
-    cout << "player_2\n";
-    gameloop(player2);          // run player 2 game
+    cout << "\ndelete log file? (y),(n)\n"; cin >> t;
+    if (t == 'y') clear();                                            // option to clear log file
+
+    game player1;                                           // object decleration(using defaults)
+    game player2;                                           // object decleration(using defaults)
+
+    cout << "dual game mode ? (y),(n)\n"; cin >> t;               // option for dual game
+
+    cout << "game_1\n";
+    gameloop(player1);                                         // run game 1
+
+    if (t == 'y') {
+        cout << "game_2\n";
+        gameloop(player2);                                     // run game 2
+    }
+
+    cout << "display game log file? (y) \n"; cin >> t;
+    if (t == 'y')  print();                                           // open and read log file
+        else {};
 }
 
 
 void gameloop(game n) {
 
+    fstream game_log;                                                 // object for file streaming
+    game_log.open("game log.txt",ios::app);                  // open file in input mode
+    if (!game_log) {cerr << "Error opening File "; exit(EXIT_FAILURE);}
 
     bool c = 1;
 
     while (c) {
 
-        fstream game_log;                                                 // object for file streaming
-        game_log.open("game log.txt",ios::out);                  // open file in input mode
-
         n.get_UC(game_log);                                                     //gets player symbols
 
         char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
-
         char* aptr = & array_B[0];                                            // set pointer to array [0]
-
         n.setarray(aptr);                                               // reset array with pointer
 
         n.seti(0);                                                      // set counter to zero (reset)
@@ -63,22 +77,50 @@ void gameloop(game n) {
             if (n.getplayer_SI() == "terminate") {c = false; break;}  //to terminate both loops
             if (n.getplayer_SI() == "restart") break;                 // to restart game by exit this loop
 
-            n.print_CB();                                             // takes selection and marks the board
+            n.print_CB(game_log);                                     // takes selection and marks the board
 
-            if (n.geti() > 3) n.win_P(l);                    // determines winner
+            if (n.geti() > 3) n.win_P(l,game_log);                 // determines winner
         }
-
         if (l == 3) break;
     }
-
+    game_log.close();                                       // close file
 
 }
+
+
+void print(){
+
+    fstream game_log2;
+    game_log2.open("game log.txt",ios::in);                // open file in output mode
+    if (!game_log2) {cerr << "Error opening File ";  exit(EXIT_FAILURE);}     // for error opening file
+
+    std::string sline;                                      // create variable to store data streamed from file
+    while (getline(game_log2, sline)) {                     // streams line by line
+
+        cout << sline << endl;
+    }
+
+    game_log2.close();                                                    // close file
+}
+
+
+void clear() {
+
+    fstream game_log3;
+    game_log3.open("game log.txt",ios::out|ios::trunc);
+    if (!game_log3) {cerr << "Error opening File ";  exit(EXIT_FAILURE);}     // for error opening file
+    cout << "\nfile cleared\n\n";
+
+    game_log3.close();
+}
+
+
 
 
 /*
  winning system (brainstorming without using simple method)
 
-    activate after the 4th turn as before that impossible of a win
+    actiafter the 4th turn as before that impossible of a win
 
     select_Ui would give most recent valid entry, use that to search around it and find a match
       function that looks + i and -i spots until index at i == player_c
@@ -110,7 +152,9 @@ void gameloop(game n) {
 // added showing which method the player won
 // used class(not effecticly yet)
 // used pointer for resetting array
-// once a player won, than ask if another game wants to be played, if no, than auto reset after amount of time
+// once a player won, than ask if another game wants to be played, if no than move 2 second player
+// program to write game results and turns took to file
+// improve format
 
 // in progress
 
@@ -119,6 +163,6 @@ void gameloop(game n) {
 
 // to do
 
-// program to write game results and or gameplay to file
+
 // when winning show or tell in what row or colum is occured
 

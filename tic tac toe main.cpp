@@ -39,13 +39,16 @@ void gameloop(game n) {
 
         fstream game_log;                                                 // object for file streaming
         game_log.open("game log.txt",ios::out);                  // open file in input mode
+        if (!game_log) {
+
+            cerr << "Error opening File ";
+            exit(EXIT_FAILURE);
+        }
 
         n.get_UC(game_log);                                                     //gets player symbols
 
         char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
-
         char* aptr = & array_B[0];                                            // set pointer to array [0]
-
         n.setarray(aptr);                                               // reset array with pointer
 
         n.seti(0);                                                      // set counter to zero (reset)
@@ -67,6 +70,8 @@ void gameloop(game n) {
 
             if (n.geti() > 3) n.win_P(l);                    // determines winner
         }
+
+        game_log.close();                                       // close file
 
         if (l == 3) break;
     }

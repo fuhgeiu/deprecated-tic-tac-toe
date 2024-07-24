@@ -7,7 +7,6 @@ alex carnes 6/16
 #include "tic tac toe .h"
 #include <random>
 #include <unistd.h>
-#include <fstream>
 
 using namespace std;
 //using namespace game;
@@ -16,10 +15,11 @@ using namespace std;
 void game::get_UC (ostream& stream) {
 //getting symbols for each player
 
+    stream << "player symbols\n";
     cout << "\nenter player one symbol: ";
-    cin >> game::a; stream << a;                                        // for player 1
+    cin >> game::a;                                                     // for player 1
     cout << "enter player two symbol: ";
-    cin >> game::b; stream << b;                                        // for player 2
+    cin >> game::b; stream << a << "," << b << endl;                    // for player 2
 }
 
 

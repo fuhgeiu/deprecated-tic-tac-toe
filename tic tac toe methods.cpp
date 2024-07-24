@@ -6,15 +6,19 @@ alex carnes 6/16
 #include <iostream>
 #include "tic tac toe .h"
 #include <random>
+#include <unistd.h>
+#include <fstream>
 
 using namespace std;
 //using namespace game;
 
 
-void game::get_UC () {
+void game::get_UC (ostream& stream) {
 //getting symbols for each player
+
+
     cout << "\nenter player one symbol: ";
-    cin >> game::a;                                                       // for player 1
+    cin >> game::a;                                                        // for player 1
     cout << "enter player two symbol: ";
     cin >> game::b;                                                       // for player 2
 }
@@ -50,9 +54,8 @@ string game::comp () {
 
         random_device rd;                                          // obtain a random number from hardware
         mt19937 gen(rd());                                     // seed the generator
-        uniform_int_distribution<> distr(1, 9);              // define the range
-
-        i = distr(gen);                                         // variable equals random number
+        uniform_int_distribution<> distr(1, 9);              // define the range and distribution
+        i = distr(gen);
     }
     while (array_B[i - 1] == a || array_B[i - 1] == b  );          // so computer choice will not be selected
 
@@ -96,36 +99,55 @@ void game::select_UI () {
 
 void game::win_P (int &l) {
 
-    int z = 0;
+    double z = 0.0;
 //for horizontal
-    if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C)) {z = 1; l = 0;}
-    else if ((array_B[3] == player_C) && (array_B[4] == player_C) && (array_B[5] == player_C)) {z = 1; l = 0;}
-    else if ((array_B[6] == player_C) && (array_B[7] == player_C) && (array_B[8] == player_C)) {z = 1; l = 0;}
+    if ((array_B[0] == player_C) && (array_B[1] == player_C) && (array_B[2] == player_C)) {z = 1.0; l = 0;}
+    else if ((array_B[3] == player_C) && (array_B[4] == player_C) && (array_B[5] == player_C)) {z = 1.0; l = 0;}
+    else if ((array_B[6] == player_C) && (array_B[7] == player_C) && (array_B[8] == player_C)) {z = 1.0; l = 0;}
 
 //for vertical
-    if ((array_B[0] == player_C) && (array_B[3] == player_C) && (array_B[6] == player_C)) {z = 2; l = 0;}
-    else if ((array_B[1] == player_C) && (array_B[4] == player_C) && (array_B[7] == player_C)) {z = 2; l = 0;}
-    else if ((array_B[2] == player_C) && (array_B[5] == player_C) && (array_B[8] == player_C)) {z = 2; l = 0;}
+    if ((array_B[0] == player_C) && (array_B[3] == player_C) && (array_B[6] == player_C)) {z = 2.0; l = 0;}
+    else if ((array_B[1] == player_C) && (array_B[4] == player_C) && (array_B[7] == player_C)) {z = 2.0; l = 0;}
+    else if ((array_B[2] == player_C) && (array_B[5] == player_C) && (array_B[8] == player_C)) {z = 2.0; l = 0;}
 
 //for diagonal
-    if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C)) {z = 3; l = 0;}
-    else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C)) {z = 3; l = 0;}
+    if ((array_B[0] == player_C) && (array_B[4] == player_C) && (array_B[8] == player_C)) {z = 3.0; l = 0;}
+    else if ((array_B[2] == player_C) && (array_B[4] == player_C) && (array_B[6] == player_C)) {z = 3.0; l = 0;}
 
 //display how player won
-    if (z == 1) cout << endl << player_C << " won horizontally\n";
-    if (z == 2) cout << endl << player_C << " won vertically\n";
-    if (z == 3) cout << endl << player_C << " won diagonally\n";
+    if (z == 1.0) cout << endl << player_C << " won horizontally\n";
+    if (z == 2.0) cout << endl << player_C << " won vertically\n";
+    if (z == 3.0) cout << endl << player_C << " won diagonally\n";
 
 //for tie and resetting game
-    if (i > 8 && l == 1) {
+    if (z > 0.0 || i > 8) {
 
         char temp;
-        cout << "\nthere has been a tie\n\n" << "if you want a new game type 'y' \n";
-        cin >> temp;
-        if (temp == 'y') l = 0;
+        if (i > 8) cout << "\nthere has been a tie\n\n";
+        cout << "\nif you want a new game type 'y' \n";
+        cin >> temp;  if (temp == 'y') l = 0;  else sleep(2); l = 0;
     }
 
 }
+
+// to show how and which player won, print board with just the winning players symbols displayed in the winning spots
+//      do not show losing player or, symbols that are not part of the winning 3 spots
+
+
+// get the first spot of the 3 spots that won, than iterrate and display the winners symbols 3 times
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 std::string game::getplayer_SI() { return player_SI;}                       // get player seelction

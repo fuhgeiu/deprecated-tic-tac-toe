@@ -5,16 +5,17 @@ alex carnes 6/16
 
 #include <iostream>
 #include "tic tac toe methods.cpp"
+#include <fstream>
 
 using namespace std;
 //using namespace game;
 
 game current;               // object decleration(using defaults)
 
+
 int main () {
 
     cout << "\tAlex Carnes\t\t" << "6/5\n" << "\ttic tac toe lab\twrite program to play tic tac toe with\n\n";
-    //game instructions
     cout << "tic tac toe game\n\nwhen asked for a selection\n :type 'exit' to stop game\n :type 'new' to restart game\n";
     cout << " :type 'c' for a random selection by computer\n\n";
     cout << "type 'c' if u want the player to be a computer player\n";
@@ -23,7 +24,10 @@ int main () {
 
     while (c) {
 
-        current.get_UC();                                                     //gets player symbols
+        fstream game_log;                                                 // object for file streaming
+        game_log.open("game log.txt",ios::out);                  // open file in input mode
+
+        current.get_UC(game_log);                                                     //gets player symbols
 
         char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
 
@@ -35,7 +39,7 @@ int main () {
 
         int l = 1;
 
-            while (l==1) {
+        while (l==1) {
             //determine which player character to use for the turn, keeps count
             current.setplayer_C(current.game::symbol_C());                         // set player_C to current player
 
@@ -52,6 +56,7 @@ int main () {
         }
 
     }
+
 
 }
 
@@ -91,9 +96,15 @@ int main () {
 // added showing which method the player won
 // used class(not effecticly yet)
 // used pointer for resetting array
+// once a player won, than ask if another game wants to be played, if no, than auto reset after amount of time
+
+// in progress
+
+
 
 
 // to do
 
 // program to write game results and or gameplay to file
+// when winning show or tell in what row or colum is occured
 

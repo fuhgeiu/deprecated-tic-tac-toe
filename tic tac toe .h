@@ -5,6 +5,7 @@ alex carnes 6/16
 
 
 #include <iostream>
+#include <fstream>
 
 //namespace game
 //{
@@ -18,7 +19,6 @@ class game {
     int i;                                              // for counter
 
 public:
-
 
     game(char a0, char b0, char c, std::string s) {         // constructer
 
@@ -37,12 +37,12 @@ public:
     }
 
     // methods
-    void get_UC();                                              // get player symbols
+    void get_UC(std::ostream&);                                              // get player symbols
     void print_CB();                                            // print current board
     char symbol_C();                                            // determine current player
     std::string comp();                                         // get computer choice(includes checks)
     void select_UI();                                           // get and check spot selection
-    void win_P(int &l);                                         // determine and display winner/tie
+    void win_P(int&);                                       // determine and display winner/tie
 
     // special methods
     std::string getplayer_SI();                             // getter for player_SI, for loop control in main

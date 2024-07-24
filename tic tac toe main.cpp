@@ -10,8 +10,8 @@ alex carnes 6/16
 using namespace std;
 //using namespace game;
 
-game current;               // object decleration(using defaults)
 
+void gameloop(game);
 
 int main () {
 
@@ -20,6 +20,19 @@ int main () {
     cout << " :type 'c' for a random selection by computer\n\n";
     cout << "type 'c' if u want the player to be a computer player\n";
 
+    game player1;               // object decleration(using defaults)
+    game player2;               // object decleration(using defaults)
+
+    cout << "player_1\n";
+    gameloop(player1);          // run player 1 game
+    cout << "player_2\n";
+    gameloop(player2);          // run player 2 game
+}
+
+
+void gameloop(game n) {
+
+
     bool c = 1;
 
     while (c) {
@@ -27,34 +40,35 @@ int main () {
         fstream game_log;                                                 // object for file streaming
         game_log.open("game log.txt",ios::out);                  // open file in input mode
 
-        current.get_UC(game_log);                                                     //gets player symbols
+        n.get_UC(game_log);                                                     //gets player symbols
 
         char array_B [9] = {'1','2','3','4','5','6','7','8','9'};
 
         char* aptr = & array_B[0];                                            // set pointer to array [0]
 
-        current.setarray(aptr);                                               // reset array with pointer
+        n.setarray(aptr);                                               // reset array with pointer
 
-        current.seti(0);                                                      // set counter to zero (reset)
+        n.seti(0);                                                      // set counter to zero (reset)
 
         int l = 1;
 
         while (l==1) {
             //determine which player character to use for the turn, keeps count
-            current.setplayer_C(current.game::symbol_C());                         // set player_C to current player
+            n.setplayer_C(n.symbol_C());                         // set player_C to current player
 
-            cout << "\ncurrent player is: " << current.getplayer_C() << endl;         // show current player symbol
+            cout << "\ncurrent player is: " << n.getplayer_C() << endl;         // show current player symbol
 
-            current.select_UI();                //gets player spot selection, and checks if spot is already taken
+            n.select_UI();                //gets player spot selection, and checks if spot is already taken
 
-            if (current.getplayer_SI() == "terminate") {c = false; break;}  //to terminate both loops
-            if (current.getplayer_SI() == "restart") break;                 // to restart game by exit this loop
+            if (n.getplayer_SI() == "terminate") {c = false; break;}  //to terminate both loops
+            if (n.getplayer_SI() == "restart") break;                 // to restart game by exit this loop
 
-            current.print_CB();                                             // takes selection and marks the board
+            n.print_CB();                                             // takes selection and marks the board
 
-            if (current.geti() > 3) current.game::win_P(l);                    // determines winner
+            if (n.geti() > 3) n.win_P(l);                    // determines winner
         }
 
+        if (l == 3) break;
     }
 
 

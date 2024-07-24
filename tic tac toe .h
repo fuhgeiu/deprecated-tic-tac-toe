@@ -42,7 +42,7 @@ public:
     char symbol_C();                                            // determine current player
     std::string comp();                                         // get computer choice(includes checks)
     void select_UI();                                           // get and check spot selection
-    void win_P(int&);                                       // determine and display winner/tie
+    void win_P(int&);                                           // determine and display winner/tie
 
     // special methods
     std::string getplayer_SI();                             // getter for player_SI, for loop control in main

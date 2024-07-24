@@ -16,11 +16,10 @@ using namespace std;
 void game::get_UC (ostream& stream) {
 //getting symbols for each player
 
-
     cout << "\nenter player one symbol: ";
-    cin >> game::a;                                                        // for player 1
+    cin >> game::a; stream << a;                                        // for player 1
     cout << "enter player two symbol: ";
-    cin >> game::b;                                                       // for player 2
+    cin >> game::b; stream << b;                                        // for player 2
 }
 
 
@@ -125,7 +124,7 @@ void game::win_P (int &l) {
         char temp;
         if (i > 8) cout << "\nthere has been a tie\n\n";
         cout << "\nif you want a new game type 'y' \n";
-        cin >> temp;  if (temp == 'y') l = 0;  else sleep(2); l = 0;
+        cin >> temp;  if (temp == 'y') l = 0;  else sleep(1); l = 3;
     }
 
 }
@@ -135,19 +134,6 @@ void game::win_P (int &l) {
 
 
 // get the first spot of the 3 spots that won, than iterrate and display the winners symbols 3 times
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 std::string game::getplayer_SI() { return player_SI;}                       // get player seelction

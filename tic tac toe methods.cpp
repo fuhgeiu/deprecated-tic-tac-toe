@@ -69,9 +69,7 @@ void game::select_UI () {
 
     bool c = 1;
 
-    cout << to_string(findBestMove());
-
-    if ( game::player_C == 'c' ) {player_SI = to_string(findBestMove());}
+    if ( game::player_C == 'c' ) {player_SI = to_string(findBestMove()+1);}
     else {
 
         cout << "\nenter a selection: ";

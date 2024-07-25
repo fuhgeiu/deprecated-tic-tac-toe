@@ -11,6 +11,7 @@ class game {
 
     // atributes
     char player_C, a, b;                                // character symbols
+    char mx,mn;
     std::string player_SI;                              // spot to be chosen to fill in with character
     char array_B[9];                                    // container for board
     int i;                                              // for counter
@@ -50,7 +51,9 @@ public:
     int geti();                                             // get current count
 
     // ai methods
+    void chr();
     int evaluate();
+    bool isMovesLeft();
     int minimax(int depth, bool isMax);
     int findBestMove();
 

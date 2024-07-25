@@ -6,6 +6,7 @@ alex carnes 6/16
 #include <iostream>
 #include "tic tac toe methods.cpp"
 #include <fstream>
+#include <chrono>
 
 using namespace std;
 //using namespace game;
@@ -33,12 +34,23 @@ int main () {
     cout << "dual game mode ? (y),(n)\n"; cin >> t;               // option for dual game
 
     cout << "game_1\n";
+
+    std::chrono::time_point<std::chrono::system_clock> start, end;          // use system clock
+    start = std::chrono::system_clock::now();                               // start time
+
     gameloop(player1);                                         // run game 1
+
+    if (t != 'y')   end = std::chrono::system_clock::now();
 
     if (t == 'y') {
         cout << "game_2\n";
         gameloop(player2);                                     // run game 2
+
+        end = std::chrono::system_clock::now();
     }
+
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    cout << "\nelapsed time is " << elapsed_seconds.count() << " seconds\n\n";
 
     cout << "display game log file? (y) \n"; cin >> t;
     if (t == 'y')  print();                                           // open and read log file

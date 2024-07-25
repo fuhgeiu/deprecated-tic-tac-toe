@@ -6,6 +6,7 @@ alex carnes 6/16
 #include <iostream>
 #include "tic tac toe .h"
 #include <random>
+#include "tic tac toe ai.cpp"
 
 using namespace std;
 //using namespace game;
@@ -68,7 +69,9 @@ void game::select_UI () {
 
     bool c = 1;
 
-    if ( game::player_C == 'c' ) {player_SI = comp();}
+    cout << to_string(findBestMove());
+
+    if ( game::player_C == 'c' ) {player_SI = to_string(findBestMove());}
     else {
 
         cout << "\nenter a selection: ";
@@ -132,6 +135,7 @@ void game::win_P (int &l,fstream& stream) {
     }
 
 }
+
 
 
 // to show how and which player won, print board with just the winning players symbols displayed in the winning spots

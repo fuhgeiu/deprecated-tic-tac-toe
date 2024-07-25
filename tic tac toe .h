@@ -7,9 +7,6 @@ alex carnes 6/16
 #include <iostream>
 #include <fstream>
 
-//namespace game
-//{
-
 class game {
 
     // atributes
@@ -52,9 +49,13 @@ public:
     void seti (int);                                        // sets counter count
     int geti();                                             // get current count
 
+    // ai methods
+    int evaluate();
+    int minimax(int depth, bool isMax);
+    int findBestMove();
+
 };
 
-//}
 
 
 

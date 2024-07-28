@@ -136,13 +136,6 @@ void game::win_P (int &l,fstream& stream) {
 
 
 
-// to show how and which player won, print board with just the winning players symbols displayed in the winning spots
-//      do not show losing player or, symbols that are not part of the winning 3 spots
-
-
-// get the first spot of the 3 spots that won, than iterrate and display the winners symbols 3 times
-
-
 std::string game::getplayer_SI() { return player_SI;}                       // get player seelction
 
 char game::getplayer_C() {return player_C;}                                 // get current player

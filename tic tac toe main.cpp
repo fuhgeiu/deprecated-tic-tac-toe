@@ -103,11 +103,11 @@ void gameloop(game n) {
 void print(){
 
     fstream game_log2;
-    game_log2.open("game log.txt",ios::in);                // open file in output mode
+    game_log2.open("game log.txt",ios::in);                          // open file in output mode
     if (!game_log2) {cerr << "Error opening File ";  exit(EXIT_FAILURE);}     // for error opening file
 
-    std::string sline;                                      // create variable to store data streamed from file
-    while (getline(game_log2, sline)) {                     // streams line by line
+    std::string sline;                                         // create variable to store data streamed from file
+    while (getline(game_log2, sline)) {                  // streams line by line
 
         cout << sline << endl;
     }
@@ -118,12 +118,12 @@ void print(){
 
 void clear() {
 
-    fstream game_log3;
-    game_log3.open("game log.txt",ios::out|ios::trunc);
+    fstream game_log3;                                                        // new object
+    game_log3.open("game log.txt",ios::out|ios::trunc);              // open in truncate mode
     if (!game_log3) {cerr << "Error opening File ";  exit(EXIT_FAILURE);}     // for error opening file
     cout << "\nfile cleared\n\n";
 
-    game_log3.close();
+    game_log3.close();                                                         // close file
 }
 
 

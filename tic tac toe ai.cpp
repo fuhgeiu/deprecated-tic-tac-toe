@@ -5,6 +5,7 @@ using namespace std;
 
 
 int game::evaluate() {
+
     // Winning combinations for 'a' (AI)
     if ((array_B[0] == a && array_B[1] == a && array_B[2] == a) ||
         (array_B[3] == a && array_B[4] == a && array_B[5] == a) ||
@@ -30,36 +31,36 @@ int game::evaluate() {
     return 0;
 }
 
-bool game::isMovesLeft() {
+bool game::isMovesLeft() {                                                      // to check if there are open spots
     for (int i = 0; i < 9; i++)
         if (array_B[i] != a && array_B[i] != b)
-            return true;
-    return false;
+            return true;                                                        // return true, if spots availible
+    return false;                                                               // return false if no spots
 }
 
-int game::minimax(int depth, bool toMax) {
+int game::minimax(int depth, bool toMax) {                                      // minmax function
     int score = evaluate();
 
-    if (score == 10 || score == -10)
+    if (score == 10 || score == -10)                                            // if test run has a score retrun it
         return score;
 
-    if (!isMovesLeft())
+    if (!isMovesLeft())                                                         // if no moves left return o
         return 0;
 
-    if (toMax) {
+    if (toMax) {                                                                // run to maximize (get max score, ai)
         int best = -1000;
         for (int i = 0; i < 9; i++) {
-            if (array_B[i] != a && array_B[i] != b) {
-                char temp = array_B[i];
-                array_B[i] = a;
-                best = max(best, minimax(depth + 1, !toMax));
-                array_B[i] = temp;
+            if (array_B[i] != a && array_B[i] != b) {                           // run for empty spots
+                char temp = array_B[i];                                         // temp store actual value to undo test
+                array_B[i] = a;                                                 // set empty spot to maximized player
+                best = max(best, minimax(depth + 1, !toMax));             // run recursive func to find max score
+                array_B[i] = temp;                                              // will undo tests
             }
         }
         return best;
-    } else {
-        int best = 1000;
-        for (int i = 0; i < 9; i++) {
+    } else {                                                                    // run to minimize the maximizer
+        int best = 1000;                                                        // rest runs just like maximizer but
+        for (int i = 0; i < 9; i++) {                                           // use minimizer varibale
             if (array_B[i] != a && array_B[i] != b) {
                 char temp = array_B[i];
                 array_B[i] = b;
@@ -71,20 +72,20 @@ int game::minimax(int depth, bool toMax) {
     }
 }
 
-int game::findBestMove() {
+int game::findBestMove() {                                                      // evaluate to find best move
     int bestVal = -1000;
     int bestMove = -1;
 
     for (int i = 0; i < 9; i++) {
-        if (array_B[i] != a && array_B[i] != b) {
-            char temp = array_B[i];
-            array_B[i] = a;
-            int moveVal = minimax(0, false);
-            array_B[i] = temp;
+        if (array_B[i] != a && array_B[i] != b) {                               // if spot empty
+            char temp = array_B[i];                                             // store actual value to tmep varibale
+            array_B[i] = a;                                                     // set test to maximizer
+            int moveVal = minimax(0, false);                       // set final score from mimimax function
+            array_B[i] = temp;                                                  // to undo
 
-            if (moveVal > bestVal) {
-                bestMove = i;
-                bestVal = moveVal;
+            if (moveVal > bestVal) {                                            // when value of current move is greater
+                bestMove = i;                                                   // than the best value, update best move
+                bestVal = moveVal;                                              // and value
             }
         }
     }

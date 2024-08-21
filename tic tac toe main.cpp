@@ -145,6 +145,7 @@ void clear() {
 */
 
 
+
 // changes to program pushed recently
 
 // player can select a computer to make a choice for them that is available on the board    func [ comp(); ]
@@ -166,8 +167,14 @@ void clear() {
 
 
 // to do
-// be able for player to choose to run a new standalone game or run current game
-// use pointer for cleaner and improved code
+
+// have a better system for detecting a winner
+
+// improve code by the use of pointers where applicable
+
+// have a main home page where all game isntances are diaplayed and can eb accessed from
+//      player can choose to create new instance or delete instances, also they can clear the log file
+//
 
 
 

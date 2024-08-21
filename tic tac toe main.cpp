@@ -142,14 +142,6 @@ void clear() {
     when the computer sees 3 characters all in correct row or diagnol than it declares that character the winner
 
       check if the possible locations that will be a win
-
- other system
-
-    will iterate through nad find all locations of same charcter
-    is those character indexes indicate they are in a winning pattern than dispaly the winner
-      the pattern will be -3 and + 3 for vertical
-      +1 and -1 for horizontal
-      +4 and + 8 for diagonal or +2 and +4
 */
 
 
@@ -174,7 +166,9 @@ void clear() {
 
 
 // to do
+// be able for player to choose to run a new standalone game or run current game
+// use pointer for cleaner and improved code
 
 
-// when winning show or tell in what row or colum is occured
+
 

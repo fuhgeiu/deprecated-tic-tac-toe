@@ -23,6 +23,12 @@ int main () {
     cout << " :type 'c' for a random selection by computer\n\n";
     cout << "type 'c' if u want the player to be a computer player\n";
 
+    // adding home page menus
+
+    cout << "TIC TAC TOE\n\n" << "menu\n\n" << ""
+
+
+
     char t;
 
     cout << "\ndelete log file? (y),(n)\n"; cin >> t;
@@ -173,9 +179,51 @@ void clear() {
 // improve code by the use of pointers where applicable
 
 // have a main home page where all game isntances are diaplayed and can eb accessed from
-//      player can choose to create new instance or delete instances, also they can clear the log file
-//
+
+/* menu example
+
+ TIC TAC TOE
+
+    play (x)
+    log file (v)
+    settings (w)                              // only chnages default setting can be changed on a per game basis
+
+// after selecting "play"
+            play
+    // display instances example
+ game new (a)
+ game with computer (b)
+ bobs game (c)
+ empty (d)
+ empty (e)
+
+          new game (x)
+         delete game (v)
+
+// after seelcting delete game
+
+  delete game _________ (y) (n)
+
+// after selecting new game
 
 
 
+
+
+
+// after selecting "log file"
+
+         log managment
+
+         clear file (x)
+        dispaly file (v)
+
+// after selecting settings
+
+        default settings
+
+
+
+
+*/
 

@@ -23,9 +23,14 @@ int main () {
     cout << " :type 'c' for a random selection by computer\n\n";
     cout << "type 'c' if u want the player to be a computer player\n";
 
+
+
+
     // adding home page menus
 
-    cout << "TIC TAC TOE\n\n" << "menu\n\n" << ""
+    cout << "TIC TAC TOE\n\n" << "menu\n\n" << "";
+
+
 
 
 
@@ -188,6 +193,7 @@ void clear() {
     log file (v)
     settings (w)                              // only chnages default setting can be changed on a per game basis
 
+
 // after selecting "play"
             play
     // display instances example
@@ -200,15 +206,22 @@ void clear() {
           new game (x)
          delete game (v)
 
+
 // after seelcting delete game
 
   delete game _________ (y) (n)
 
+
 // after selecting new game
 
+name new game : ___________
 
 
+// after selecting a active game instance
 
+ game ________
+
+   // then resume the game, if the palyer types back than the palyer can select a new instance, if menu go to menu
 
 
 // after selecting "log file"
@@ -218,9 +231,19 @@ void clear() {
          clear file (x)
         dispaly file (v)
 
+
+// after selecting "clear file"
+
+        clear file (y) (n)     // clear file when press yes, exit if no
+
+
 // after selecting settings
 
         default settings
+
+        how to log onto file
+
+
 
 
 

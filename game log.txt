@@ -1,0 +1,9 @@
+
+
+player symbols
+o,c
+
+o :selects spot 5
+c :selects spot 1
+o :selects spot 7
+c :selects spot 2
